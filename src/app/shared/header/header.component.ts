@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Login } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +9,19 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+
+  constructor(private route: Router){}
+
+  ngOnInit(){
+
+  }
+
+  authVerify(){
+    if(localStorage.getItem('user')){
+      this.route.navigate(['/home'])
+    }
+    else {
+      this.route.navigate(['/user/auth'])
+    }
+  }
 }

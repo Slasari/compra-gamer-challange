@@ -1,0 +1,42 @@
+<div class="user-auth">
+    <div class="auth-container" *ngIf="!showLogin">
+        <h1>Registrate!</h1>
+        <form #userSignUp="ngForm" class="common-form" (ngSubmit)="signUp(userSignUp.value)">
+            <input type="text" class="form-input" placeholder="Ingresa tu Nombre"
+            name="name"
+            ngModel>
+            <input type="text" class="form-input" placeholder="Ingresa tu/s Apellido/s"
+            name="lastname"
+            ngModel>
+            <input type="email" class="form-input" placeholder="Ingresa tu Email"
+            name="mail"
+            ngModel>
+            <input type="password" class="form-input" placeholder="Ingresa tu Contraseña"
+            name="password"
+            ngModel>
+            <input type="text" class="form-input" placeholder="Ingresa tu DNI"
+            name="dni"
+            ngModel>
+            <input type="text" class="form-input" placeholder="Ingresa tu Telefono"
+            name="phone"
+            ngModel>
+            <button class="btn-form">Crear Cuenta</button>
+            <p><a (click)="openLogin(1)">Ya tenes una cuenta? Click aca</a></p>
+        </form>
+    </div>
+
+    <div class="auth-container" *ngIf="showLogin">
+        <h1>Inicia sesion</h1>
+        <p *ngIf="authError" class="auth-error">Verifica que tus datos sean correctos</p>
+        <form #userLogin="ngForm" class="common-form" (ngSubmit)="login(userLogin.value)">
+            <input type="email" class="form-input" placeholder="Ingresa tu Email"
+            name="mail"
+            ngModel>
+            <input type="password" class="form-input" placeholder="Ingresa tu Contraseña"
+            name="password"
+            ngModel>
+            <button class="btn-form">Iniciar Sesion</button>
+            <p><a (click)="openLogin(0)">Todavia no tenes una cuenta? Click aca</a></p>
+        </form>
+    </div>
+</div>  
