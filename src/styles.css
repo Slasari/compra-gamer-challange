@@ -34,5 +34,6 @@ button:hover {
     margin-bottom: 20px;
     outline: none;
     border: none;
-    border-bottom: 2px solid rgb(5, 68, 119);;
+    border-bottom: 2px solid rgb(5, 68, 119);
+    font-size: 15px;
 }

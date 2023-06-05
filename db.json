@@ -1,0 +1,13 @@
+{
+  "user": [
+    {
+      "name": "Ariel",
+      "lastname": "Salcito",
+      "mail": "Xalivre@hotmail.com",
+      "password": "Ariel123",
+      "dni": "22234456",
+      "phone": "11 7845 4565",
+      "id": 1
+    }
+  ]
+}
