@@ -1,8 +1,10 @@
 body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
-button {
+.btn-blue {
     background-color: #156DBF;
     color: white;
     border-radius: .2rem;
@@ -17,7 +19,7 @@ button {
     cursor: pointer;
 }
   
-button:hover {
+.btn-blue:hover {
     background-color: #2589e6;
     transition: 0.15s
 }

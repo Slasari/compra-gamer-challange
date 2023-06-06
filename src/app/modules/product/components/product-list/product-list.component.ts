@@ -3,30 +3,26 @@ import { Product, SubCategory } from 'src/app/core/models/product.model';
 import { ProductService } from 'src/app/core/services/product/product.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css'],
 })
-export class HomeComponent {
+export class ProductListComponent {
 
+  public productList: Product[] = [];
+  public subCategoryList: SubCategory[] = [];
 
-  public productList: Product[] = []
-  public subCategoryList: SubCategory[] = []
+  public page!: number;
 
-  public popularProducts: Product[] = []
   
+  constructor(private product: ProductService) {}
   
-  public images : string[] = [
-    "https://www.teahub.io/photos/full/102-1029001_hd-game-wallpapers-archives-de-portada-para-youtube.jpg",
-  ]
-
-  constructor(private product: ProductService){}
-
-
-  ngOnInit(){
+  ngOnInit(): void {
     this.getProducts();
+  
   }
-
+  public reset(){window.scroll({top:0, behavior:'smooth'})}
+  
   getProducts() {
     this.product.getProducts().subscribe((products) => {
       if (products) {
@@ -44,14 +40,9 @@ export class HomeComponent {
         }
         if(this.productList && this.subCategoryList){
           this.productList = this.product.getProductsWithCategory(this.productList, this.subCategoryList)
-          for(let i = 0; i < 4; i++){
-
-            let random = Math.floor(Math.random() * this.productList.length)
-            this.popularProducts.push(this.productList[random])
-          }
         }
-        return "Success";
       })
     });
   }
+
 }
