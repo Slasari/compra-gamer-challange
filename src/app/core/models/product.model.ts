@@ -10,4 +10,5 @@ export interface Product {
 export interface SubCategory {
     id: number,
     nombre: string,
+    imagen: string
 }

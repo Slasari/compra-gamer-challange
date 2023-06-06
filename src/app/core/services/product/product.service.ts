@@ -9,7 +9,7 @@ import { Product, SubCategory } from '../../models/product.model';
 export class ProductService {
 
 
-  URL = URLp
+  URLp = URLp
 
   URLc = URLc
 
@@ -18,7 +18,7 @@ export class ProductService {
 
 
   getProducts(){
-    return this.http.get<Product[]>(this.URL,)
+    return this.http.get<Product[]>(this.URLp)
   }
 
   getCategories(){

@@ -9,10 +9,10 @@ import { ProductService } from 'src/app/core/services/product/product.service';
 })
 export class ProductListComponent {
 
-  a: boolean = false;
+  public productList: Product[] = [];
+  public subCategoryList: SubCategory[] = [];
 
-  productList: Product[] = [];
-  subCategoryList: SubCategory[] = [];
+  public page!: number;
 
   constructor(private product: ProductService) {}
 
@@ -37,7 +37,7 @@ export class ProductListComponent {
         }
         if(this.productList && this.subCategoryList){
           this.productList = this.product.getProductsWithCategory(this.productList, this.subCategoryList)
-          console.log(this.productList)
+          console.log(products)
         }
       })
     });

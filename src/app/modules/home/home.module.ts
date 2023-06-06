@@ -11,7 +11,7 @@ import { HomeRoutingModule } from './home-routing.module';
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
   ]
 })
 export class HomeModule { }
