@@ -1,0 +1,11 @@
+<main>
+    <div *ngIf="product">
+        <span>NOMBRE
+            {{product.nombre}}
+        </span>
+        <span>PRECIO $ {{product.precio}}</span>
+        <img src="{{'https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_' + product.imagenes[0].nombre + '-med.jpg'}}" />
+        <span>{{product.id_subcategoria}}</span>
+        <button>agregar al carrito</button>
+    </div>
+</main>

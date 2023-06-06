@@ -1,7 +1,13 @@
 export interface Product {
-    product_id: number,
-    name: string,
-    price: number,
-    subCategory_id: number,
-    image: string
+    nombre: string,
+    precio: number | string,
+    id_subcategoria: number | string;
+    imagenes: [{
+        nombre: string
+    }]
+}
+
+export interface SubCategory {
+    id: number,
+    nombre: string,
 }
