@@ -1,11 +1,10 @@
+<link rel="preconnect" href="https://compragamer.net">
 <main>
-    <div *ngIf="product" class="card-container">
-        <h3>
-            {{product.nombre}}
-        </h3>
+    <ng-container *ngIf="product" class="card-container">
+        <img ngSrc="{{'https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_' + product.imagenes[0].nombre + '-med.jpg'}}" width="150" height="134" priority="1" />
+        <h3>{{product.nombre}}</h3>
         <p>$ {{product.precio}}</p>
-        <img src="{{'https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_' + product.imagenes[0].nombre + '-med.jpg'}}" />
         <p>{{product.id_subcategoria}}</p>
         <button>Sumar al carrito</button>
-    </div>
+    </ng-container>
 </main>

@@ -37,7 +37,6 @@ export class ProductListComponent {
         }
         if(this.productList && this.subCategoryList){
           this.productList = this.product.getProductsWithCategory(this.productList, this.subCategoryList)
-          console.log(products)
         }
       })
     });
