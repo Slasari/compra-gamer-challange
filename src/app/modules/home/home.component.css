@@ -15,6 +15,10 @@
     color: rgb(5, 68, 119);
 }
 
+.product-details{
+    background-color: rgb(239, 237, 237);
+}
+
 .product-item {
     margin-bottom: 40px;
     border: 1px solid #ccc;

@@ -14,12 +14,15 @@ export class ProductListComponent {
 
   public page!: number;
 
+  
   constructor(private product: ProductService) {}
-
+  
   ngOnInit(): void {
     this.getProducts();
+  
   }
-
+  public reset(){window.scroll({top:0, behavior:'smooth'})}
+  
   getProducts() {
     this.product.getProducts().subscribe((products) => {
       if (products) {

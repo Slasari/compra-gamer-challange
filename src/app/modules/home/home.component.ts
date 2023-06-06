@@ -12,6 +12,8 @@ export class HomeComponent {
 
   public productList: Product[] = []
   public subCategoryList: SubCategory[] = []
+
+  public popularProducts: Product[] = []
   
   
   public images : string[] = [
@@ -42,7 +44,13 @@ export class HomeComponent {
         }
         if(this.productList && this.subCategoryList){
           this.productList = this.product.getProductsWithCategory(this.productList, this.subCategoryList)
+          for(let i = 0; i < 4; i++){
+
+            let random = Math.floor(Math.random() * this.productList.length)
+            this.popularProducts.push(this.productList[random])
+          }
         }
+        return "Success";
       })
     });
   }
