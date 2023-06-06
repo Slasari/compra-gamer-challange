@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import {NgOptimizedImage } from '@angular/common'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 
 
@@ -13,7 +14,8 @@ import {NgOptimizedImage } from '@angular/common'
   imports: [
     CommonModule,
     HomeRoutingModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgbModule
   ]
 })
 export class HomeModule { }

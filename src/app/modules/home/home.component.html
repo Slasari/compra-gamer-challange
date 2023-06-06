@@ -1,20 +1,118 @@
-<link rel="preconnect" href="https://compragamer.net">
-<div class="product-list-wrapper">
-    <h1>Productos Recientes</h1>
-    <div class="row">
-        <div class="col-sm-25">
-            <div class="product-item">
-                <img ngSrc="{{'https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_' + productList[0].imagenes[0].nombre + '-med.jpg'}}" width="150" height="134" priority="1"/>
-                <div class="product-details">
-                    <h5 class="name-head">{{productList[0].nombre}}</h5>
-                    <div class="product-price">
-                        <h6>{{productList[0].precio}}</h6>
-                    </div>
-                </div>
-                <div class="product-footer">
-                    <button>Sumar al Carrito</button>
-                </div>
-            </div>
-        </div>
+<ngb-carousel *ngIf="images">
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[0]" alt="Random first slide" class="slider" />
     </div>
+    <div class="carousel-caption">
+      <h3>CHALLANGE</h3>
+      <p>Angular Basico - Compra Gamer</p>
+    </div>
+  </ng-template>
+</ngb-carousel>
+
+<link rel="preconnect" href="https://compragamer.net" />
+<div class="product-list-wrapper">
+  <h1>Productos Recientes</h1>
+  <div class="row">
+
+    <div class="col-sm-3">
+      <div class="product-item">
+        <img
+          ngSrc="{{
+            'https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_' +
+              productList[0].imagenes[0].nombre +
+              '.jpg'
+          }}"
+          width="150"
+          height="134"
+          priority="1"
+          class="product-image"
+        />
+        <div class="product-details">
+          <h6 class="name-head">{{ productList[0].nombre }}</h6>
+          <div class="product-price">
+            <h6>$ {{ productList[0].precio }}</h6>
+          </div>
+          <div class="product-footer">
+            <button class="btn-blue cart">SUMAR AL CARRITO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-sm-3">
+      <div class="product-item">
+        <img
+          ngSrc="{{
+            'https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_' +
+              productList[0].imagenes[0].nombre +
+              '.jpg'
+          }}"
+          width="150"
+          height="134"
+          priority="1"
+          class="product-image"
+        />
+        <div class="product-details">
+          <h6 class="name-head">{{ productList[0].nombre }}</h6>
+          <div class="product-price">
+            <h6>$ {{ productList[0].precio }}</h6>
+          </div>
+          <div class="product-footer">
+            <button class="btn-blue cart">SUMAR AL CARRITO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="product-item">
+        <img
+          ngSrc="{{
+            'https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_' +
+              productList[0].imagenes[0].nombre +
+              '.jpg'
+          }}"
+          width="150"
+          height="134"
+          priority="1"
+          class="product-image"
+        />
+        <div class="product-details">
+          <h6 class="name-head">{{ productList[0].nombre }}</h6>
+          <div class="product-price">
+            <h6>$ {{ productList[0].precio }}</h6>
+          </div>
+          <div class="product-footer">
+            <button class="btn-blue cart">SUMAR AL CARRITO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="product-item">
+        <img
+          ngSrc="{{
+            'https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_' +
+              productList[0].imagenes[0].nombre +
+              '.jpg'
+          }}"
+          width="150"
+          height="134"
+          priority="1"
+          class="product-image"
+        />
+        <div class="product-details">
+          <h6 class="name-head">{{ productList[0].nombre }}</h6>
+          <div class="product-price">
+            <h6>$ {{ productList[0].precio }}</h6>
+          </div>
+          <div class="product-footer">
+            <button class="btn-blue cart">SUMAR AL CARRITO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

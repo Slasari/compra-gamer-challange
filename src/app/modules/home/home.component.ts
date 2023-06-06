@@ -9,12 +9,17 @@ import { ProductService } from 'src/app/core/services/product/product.service';
 })
 export class HomeComponent {
 
-  popularProducts: undefined | Product[];
 
-  productList: Product[] = []
-  subCategoryList: SubCategory[] = []
+  public productList: Product[] = []
+  public subCategoryList: SubCategory[] = []
+  
+  
+  public images : string[] = [
+    "https://www.teahub.io/photos/full/102-1029001_hd-game-wallpapers-archives-de-portada-para-youtube.jpg",
+  ]
 
   constructor(private product: ProductService){}
+
 
   ngOnInit(){
     this.getProducts();
