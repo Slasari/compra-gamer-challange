@@ -17,6 +17,9 @@
 .btn-form{
     height: 35px;
 }
+.btn-form:hover{
+    background-color: yellow;
+}
 
 .auth-error{
     color: red !important;
