@@ -1,0 +1,17 @@
+.container{
+    text-align: center;
+    margin-top: 15%;
+}
+.container h1{
+    color: rgb(5, 68, 119);
+}
+.container p {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+.container button{
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
