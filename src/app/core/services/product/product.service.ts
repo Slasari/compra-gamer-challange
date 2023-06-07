@@ -29,7 +29,7 @@ export class ProductService {
     for(let i = 0; i < p.length ; i++){
       for(let j = 0; j < c.length; j++){
         if(p[i].id_subcategoria === c[j].id){
-          p[i].id_subcategoria = c[j].nombre
+          p[i].subCategoria = c[j].nombre
         }
       }
     }

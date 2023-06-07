@@ -2,6 +2,7 @@ export interface Product {
     nombre: string,
     precio: number | string,
     id_subcategoria: number | string;
+    subCategoria: string | undefined;
     imagenes: [{
         nombre: string
     }]

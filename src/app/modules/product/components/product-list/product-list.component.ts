@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Product, SubCategory } from 'src/app/core/models/product.model';
 import { ProductService } from 'src/app/core/services/product/product.service';
 
@@ -13,6 +14,8 @@ export class ProductListComponent {
   public subCategoryList: SubCategory[] = [];
 
   public page!: number;
+
+  parameter = 'asc';
 
   
   constructor(private product: ProductService) {}
@@ -40,6 +43,7 @@ export class ProductListComponent {
         }
         if(this.productList && this.subCategoryList){
           this.productList = this.product.getProductsWithCategory(this.productList, this.subCategoryList)
+          console.log(this.productList)
         }
       })
     });

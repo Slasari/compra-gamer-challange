@@ -7,6 +7,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { NgxPaginationModule } from 'ngx-pagination';
 import {NgOptimizedImage} from '@angular/common'
 import { OrderByPipe } from 'src/app/core/pipes/order-by.pipe';
+import { MaterialModule } from 'src/app/material.module';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +23,10 @@ import { OrderByPipe } from 'src/app/core/pipes/order-by.pipe';
     CommonModule,
     ProductRoutingModule,
     NgxPaginationModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProductModule { }

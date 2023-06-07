@@ -2,7 +2,7 @@
 <main class="container">
     <div class="card" *ngIf="product" >
         <div class="card-image"><img ngSrc="{{'https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_' + product.imagenes[0].nombre + '-med.jpg'}}" width="150" height="134" priority="1" /></div>
-        <div class="category"> {{product.id_subcategoria}}</div>
+        <div class="category"> {{product.subCategoria}}</div>
         <div class="price"> $ {{product.precio}}</div>
         <div class="heading"> {{product.nombre.slice(0,18)+ (product.nombre.length > 18 && "...")}}</div>
         <div class="author"><button class="btn-blue cart">SUMAR AL CARRITO</button></div>
