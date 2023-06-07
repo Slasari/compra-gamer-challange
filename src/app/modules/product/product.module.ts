@@ -6,6 +6,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {NgOptimizedImage} from '@angular/common'
+import { OrderByPipe } from 'src/app/core/pipes/order-by.pipe';
 
 
 
@@ -13,7 +14,8 @@ import {NgOptimizedImage} from '@angular/common'
   declarations: [
     ProductComponent,
     ProductListComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    OrderByPipe
   ],
   imports: [
     CommonModule,
