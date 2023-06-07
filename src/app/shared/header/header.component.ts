@@ -28,6 +28,7 @@ export class HeaderComponent {
         this.refresh = 0
       }
     })
+    this.authVerify();
   }
 
   authVerify(){
@@ -53,6 +54,7 @@ export class HeaderComponent {
 
   logout(){
     this.user.userLogout();
+    this.userName = undefined;
     this.authVerify();
   }
 }

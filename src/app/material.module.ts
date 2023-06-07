@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {MatSelectModule} from '@angular/material/select'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatCheckboxModule} from '@angular/material/checkbox'
+import {MatIconModule} from '@angular/material/icon'
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -14,7 +16,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox'
   exports: [
     MatSelectModule,
     MatFormFieldModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule,
+    MatBadgeModule
+    
   ]
 })
 export class MaterialModule { }

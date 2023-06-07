@@ -4,18 +4,22 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import {NgOptimizedImage } from '@angular/common'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CurrencyChangePipe } from 'src/app/core/pipes/currency-change.pipe';
+import { PipesModule } from 'src/app/pipes.module';
 
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     NgOptimizedImage,
-    NgbModule
+    NgbModule,
+    PipesModule
   ]
 })
 export class HomeModule { }

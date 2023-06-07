@@ -1,6 +1,6 @@
 export interface Product {
     nombre: string,
-    precio: number | string,
+    precio: number,
     id_subcategoria: number | string;
     subCategoria: string | undefined;
     imagenes: [{

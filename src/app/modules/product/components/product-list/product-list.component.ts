@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Product, SubCategory } from 'src/app/core/models/product.model';
 import { ProductService } from 'src/app/core/services/product/product.service';
 
@@ -13,28 +12,24 @@ export class ProductListComponent {
   public productList: Product[] = [];
   public subCategoryList: SubCategory[] = [];
 
+
   public page!: number;
 
-  parameter = 'asc';
+  parameter = 'default';
+
+  parameter2 = 'default';
 
   
   constructor(private product: ProductService) {}
   
   ngOnInit(): void {
     this.getProducts();
-  
   }
-  public reset(){window.scroll({top:0, behavior:'smooth'})}
+  public reset(){window.scroll({top:65, behavior:'smooth'})}
   
   getProducts() {
     this.product.getProducts().subscribe((products) => {
       if (products) {
-        for (let i = 0; i < products.length; i++) {
-          products[i].precio = this.product.currencyFormatter(
-            'ARS',
-            products[i].precio
-          );
-        }
         this.productList = products;
       }
       this.product.getCategories().subscribe((categories) => {
@@ -43,10 +38,11 @@ export class ProductListComponent {
         }
         if(this.productList && this.subCategoryList){
           this.productList = this.product.getProductsWithCategory(this.productList, this.subCategoryList)
-          console.log(this.productList)
         }
       })
     });
   }
-
+  setProducts(){
+    this.getProducts();
+  }
 }
