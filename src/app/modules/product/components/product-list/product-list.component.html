@@ -1,8 +1,11 @@
-<main>
-    <div>
-    <div *ngIf="productList" class="cards-container">
-            <app-product-card *ngFor="let product of productList | paginate: {itemsPerPage: 12, currentPage: page}" [product]="product"></app-product-card>
+<main class="container">
+    <div class="categories-container">
+        <select>Categorias</select>
     </div>
-    <pagination-controls (pageChange)="page = $event; reset()" previousLabel="Anterior" nextLabel="Siguiente" class="paginate"></pagination-controls>
-</div>
+    <div>
+        <div *ngIf="productList" class="cards-container">
+            <app-product-card *ngFor="let product of productList | paginate: {itemsPerPage: 12, currentPage: page}" [product]="product"></app-product-card>
+        </div>
+        <pagination-controls (pageChange)="page = $event; reset()" previousLabel="Anterior" nextLabel="Siguiente" class="paginate"></pagination-controls>
+    </div>
 </main>

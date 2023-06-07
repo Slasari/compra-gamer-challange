@@ -12,8 +12,8 @@
 
 .nav .nav-search{
     display: flex;
-    margin-left: 20%;
-    margin-top: 5px;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav .nav-search input{
