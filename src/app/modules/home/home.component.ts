@@ -20,7 +20,7 @@ export class HomeComponent {
     "https://www.teahub.io/photos/full/102-1029001_hd-game-wallpapers-archives-de-portada-para-youtube.jpg",
   ]
 
-  constructor(private product: ProductService){}
+  constructor(private productService: ProductService){}
 
 
   ngOnInit(){
@@ -28,24 +28,41 @@ export class HomeComponent {
   }
 
   getProducts() {
-    this.product.getProducts().subscribe((products) => {
+    this.productService.getProducts().subscribe((products) => {
       if (products) {
         this.productList = products;
       }
-      this.product.getCategories().subscribe((categories) => {
+      this.productService.getCategories().subscribe((categories) => {
         if(categories){
           this.subCategoryList = categories
         }
         if(this.productList && this.subCategoryList){
-          this.productList = this.product.getProductsWithCategory(this.productList, this.subCategoryList)
-          for(let i = 0; i < 4; i++){
-
+          this.productList = this.productService.getProductsWithCategory(this.productList, this.subCategoryList)
+          for(let i = 0; this.popularProducts.length < 4; i++){
             let random = Math.floor(Math.random() * this.productList.length)
-            this.popularProducts.push(this.productList[random])
+            if(!this.popularProducts.includes(this.productList[random])){
+              this.popularProducts.push(this.productList[random])
+            }
           }
+        }
+        if(this.productList && localStorage.getItem('localCart')){
+          let cartStore = (localStorage.getItem('localCart'))
+          let cartData = cartStore && JSON.parse(cartStore)
+          this.productList = this.productService.getLocalCartData(this.productList, cartData)
         }
         return "Success";
       })
     });
+  }
+
+  addToCart(product: Product){
+    if(product){
+      this.productService.localAddToCart(product)
+    }
+  }
+  removeFromCart(product: Product){
+    if(product){
+      this.productService.removeFromCart(product)
+    }
   }
 }

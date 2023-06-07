@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Product, SubCategory } from 'src/app/core/models/product.model';
+import { ProductService } from 'src/app/core/services/product/product.service';
 
 @Component({
   selector: 'app-product-card',
@@ -9,17 +10,32 @@ import { Product, SubCategory } from 'src/app/core/models/product.model';
 export class ProductCardComponent {
 
   @Input() product: Product = {
+    id_producto: 0,
     nombre: '',
     precio: 0,
     id_subcategoria: 0,
     subCategoria: '',
     imagenes: [{
       nombre: ''
-    }]
+    }],
+    inCart: false
   }
 
-  ngOnIni(){
+  constructor(private productService: ProductService){}
 
+  ngOnIni(){
+  }
+
+  addToCart(){
+    if(this.product){
+      this.productService.localAddToCart(this.product)
+    }
+  }
+
+  removeFromCart(producto: Product){
+    if(producto){
+      this.productService.removeFromCart(this.product)
+    }
   }
 
 }

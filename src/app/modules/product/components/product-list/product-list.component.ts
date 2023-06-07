@@ -39,6 +39,11 @@ export class ProductListComponent {
         if(this.productList && this.subCategoryList){
           this.productList = this.product.getProductsWithCategory(this.productList, this.subCategoryList)
         }
+        if(this.productList && localStorage.getItem('localCart')){
+          let cartStore = (localStorage.getItem('localCart'))
+          let cartData = cartStore && JSON.parse(cartStore)
+          this.productList = this.product.getLocalCartData(this.productList, cartData)
+        }
       })
     });
   }

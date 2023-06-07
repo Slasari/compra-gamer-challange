@@ -36,7 +36,8 @@
             <h4>$ {{ product.precio | currencyChange}}</h4>
           </div>
           <div class="product-footer">
-            <button class="btn-blue cart">SUMAR AL CARRITO</button>
+            <button *ngIf="!product.inCart" class="btn-blue cart" (click)="addToCart(product)">SUMAR AL CARRITO</button>
+            <button *ngIf="product.inCart" class="btn-blue cart-remove" (click)="removeFromCart(product)">QUITAR DEL CARRITO</button>
           </div>
         </div>
       </div>

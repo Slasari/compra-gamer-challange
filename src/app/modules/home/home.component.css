@@ -66,6 +66,14 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.cart-remove{
+    background-color: rgb(152, 15, 15);
+    box-shadow: 0px 4px 4px 0px #6d0507;
+}
+.cart-remove:hover{
+    background-color: rgb(253, 23, 23);
+}
+
 .section-2 {
     display: flex;
     justify-content: center

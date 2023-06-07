@@ -1,4 +1,5 @@
 <main class="container">
+    <app-product-header></app-product-header>
     <div class="filters-container">
        <section>
         <section class="example-section">
@@ -26,7 +27,6 @@
             </mat-form-field>
    </section>
     </div>
-    <app-product-header></app-product-header>
     <div>
         <div *ngIf="productList" class="cards-container">
             <app-product-card *ngFor="let product of (productList | orderBy: parameter) | paginate: {itemsPerPage: 12, currentPage: page}" [product]="product"></app-product-card>

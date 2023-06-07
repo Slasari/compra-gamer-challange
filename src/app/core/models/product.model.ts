@@ -1,4 +1,5 @@
 export interface Product {
+    id_producto: number
     nombre: string,
     precio: number,
     id_subcategoria: number | string;
@@ -6,6 +7,7 @@ export interface Product {
     imagenes: [{
         nombre: string
     }]
+    inCart: boolean
 }
 
 export interface SubCategory {

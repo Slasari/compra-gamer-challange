@@ -1,7 +1,7 @@
 import { Component, Input, SimpleChange, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProductService } from 'src/app/core/services/product/product.service';
 import { UserService } from 'src/app/core/services/user/user.service';
-import {faCartShopping} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-header',
@@ -16,10 +16,10 @@ export class HeaderComponent {
 
   refresh: number = 0;
 
-  cartIcon = faCartShopping
+  cartItems: number = 0;
 
 
-  constructor(private route: Router, private user: UserService){}
+  constructor(private route: Router, private user: UserService, private productService: ProductService){}
 
   ngOnInit(){
     this.user.refresh.subscribe((result) => {
@@ -29,6 +29,15 @@ export class HeaderComponent {
       }
     })
     this.authVerify();
+
+    let cartData = localStorage.getItem('localCart');
+    if(cartData){
+      this.cartItems= JSON.parse(cartData).length
+      console.log(cartData)
+    }
+    this.productService.cartData.subscribe((items) => {
+      this.cartItems = items.length
+    })
   }
 
   authVerify(){
@@ -47,6 +56,8 @@ export class HeaderComponent {
     this.menuType = 0
    }
   }
+
+  
 
   registerPage(){
     this.route.navigate(['/user/auth'])
