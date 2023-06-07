@@ -2,12 +2,12 @@ export interface User {
     name: string,
     lastname: string,
     mail: string,
-    password: string,
     dni: string,
-    phone: string
+    phone: string,
+    state: string
 }
 
 export interface Login {
+    name: string,
     mail: string,
-    password: string
 }

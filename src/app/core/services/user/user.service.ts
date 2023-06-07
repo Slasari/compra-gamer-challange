@@ -4,6 +4,8 @@ import { Login, User } from '../../models/user.model';
 import { URLu } from '../../constans/constans';
 import { Router } from '@angular/router';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +13,8 @@ export class UserService {
 
   URL: string = URLu
 
-  loginError = new EventEmitter<boolean>(false);
+  refresh: EventEmitter<number> = new EventEmitter<number>();
+
 
   constructor(private http: HttpClient, private route: Router) { }
 
@@ -19,20 +22,11 @@ export class UserService {
 
   }
 
-  userSignUp(user: User){
-    return this.http.post<User>(this.URL, user)
+  userLogout(){
+    let userStorage = localStorage.getItem('user');
+    let userData = userStorage && JSON.parse(userStorage)
+    userData.state = "disconnected"
+    localStorage.setItem("user", JSON.stringify(userData))
   }
 
-  userLogin(data: Login){
-    return this.http.get<Login>(`${this.URL}?mail=${data.mail}&password=${data.password}`,{observe: 'response'}).subscribe((result: any) => {
-      if(result && result.body && result.body.length === 1){
-        this.loginError.emit(false);
-        localStorage.setItem('user', JSON.stringify(result.body))
-        this.route.navigate([''])
-      }
-      else{
-        this.loginError.emit(true);
-      }
-    })
-  }
 }
