@@ -1,12 +1,9 @@
 <nav class="nav">
-    <h1 class="title"><a routerLink="">Challange</a></h1>
-    <div class="nav-search">
-        <input type="text" placeholder="Search...">
-        <button class="btn-blue btn-nav">Search</button>
-    </div>
+    <h1 class="title"><a routerLink="">CHALLANGE</a></h1>
     <div *ngIf="menuType === 0">
         <ul>
             <li><a routerLink="/home">Inicio</a></li>
+            <li><a routerLink="/product/list">Lista de Productos</a></li>
             <li><a>Cart(0)</a></li>
             <li><a (click)="registerPage()">Registrarse</a></li>
         </ul>
@@ -14,6 +11,7 @@
     <div *ngIf="menuType === 1">
         <ul>
             <li><a routerLink="/home">Inicio</a></li>
+            <li><a routerLink="/product/list">Lista de Productos</a></li>
             <li><a>Cart(0)</a></li>
             <li><a>{{userName | titlecase}}</a></li>
             <li><a (click)="logout()">Cerrar Sesion</a></li>
