@@ -1,23 +1,23 @@
 <div class="user-auth">
     <div class="auth-container" *ngIf="!showLogin">
         <h1>Registrate!</h1>
+        <p *ngIf="registerError === 'emailError'" class="auth-error">Ese email ya se encuentra en uso</p>
+        <p *ngIf="registerError === 'dniError'" class="auth-error">Ese DNI ya se encuentra en uso</p>
         <form #userSignUp="ngForm" class="common-form" (ngSubmit)="signUp(userSignUp.value)">
-            <input type="text" class="form-input" placeholder="Ingresa tu Nombre"
+            <input type="text" class="form-input" placeholder="Ingresa tu nombre"
             name="name"
+            required
             ngModel>
-            <input type="text" class="form-input" placeholder="Ingresa tu/s Apellido/s"
+            <input type="text" class="form-input" placeholder="Ingresa tu/s apellido/s"
             name="lastname"
             ngModel>
-            <input type="email" class="form-input" placeholder="Ingresa tu Email"
+            <input type="email" class="form-input" placeholder="Ingresa tu email"
             name="mail"
-            ngModel>
-            <input type="password" class="form-input" placeholder="Ingresa tu Contraseña"
-            name="password"
             ngModel>
             <input type="text" class="form-input" placeholder="Ingresa tu DNI"
             name="dni"
             ngModel>
-            <input type="text" class="form-input" placeholder="Ingresa tu Telefono"
+            <input type="text" class="form-input" placeholder="Ingresa tu telefono"
             name="phone"
             ngModel>
             <button class="btn-form">Crear Cuenta</button>
@@ -26,14 +26,15 @@
     </div>
 
     <div class="auth-container" *ngIf="showLogin">
-        <h1>Inicia sesion</h1>
-        <p *ngIf="authError" class="auth-error">Verifica que tus datos sean correctos</p>
+        <h1>Bienvenido de Vuelta!</h1>
+        <p *ngIf="loginError === 'nameError'" class="auth-error">Verifica que tu nombre sea el correcto</p>
+        <p *ngIf="loginError === 'mailError'" class="auth-error">Verifica que tu mail sea el correcto</p>
         <form #userLogin="ngForm" class="common-form" (ngSubmit)="login(userLogin.value)">
-            <input type="email" class="form-input" placeholder="Ingresa tu Email"
-            name="mail"
+            <input type="text" class="form-input" placeholder="Ingresa tu nombre"
+            name="name"
             ngModel>
-            <input type="password" class="form-input" placeholder="Ingresa tu Contraseña"
-            name="password"
+            <input type="email" class="form-input" placeholder="Ingresa tu email"
+            name="mail"
             ngModel>
             <button class="btn-form">Iniciar Sesion</button>
             <p><a (click)="openLogin(0)">Todavia no tenes una cuenta? Click aca</a></p>

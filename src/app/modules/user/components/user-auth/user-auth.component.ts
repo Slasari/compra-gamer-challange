@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Login, User } from 'src/app/core/models/user.model';
 import { UserService } from 'src/app/core/services/user/user.service';
+
 
 @Component({
   selector: 'app-user-auth',
@@ -10,34 +11,76 @@ import { UserService } from 'src/app/core/services/user/user.service';
 })
 export class UserAuthComponent {
 
+
   showLogin: boolean = false;
 
-  authError: boolean = false;
+  refresh: number = 0;
 
-  constructor(private user: UserService){}
+  registerError : string = '';
+  loginError : string = '';
+
+  constructor(private user: UserService, private route: Router){}
 
   ngOnInit(){
 
   }
 
   signUp(user: User){
-    this.user.userSignUp(user).subscribe((result: User) => {
-      if(result){
-        localStorage.setItem('user', JSON.stringify(result))
-      }
-    })
+    if(user){
+      if(localStorage.getItem('user')){
+          let userStorage = (localStorage.getItem("user"))
+          let userData = userStorage && JSON.parse(userStorage)
+          if(user.mail === userData.mail){
+            this.registerError = "emailError";
+            }
+            setTimeout(() => {
+              this.registerError = ''
+            }, 3000)
+            if (user.dni === userData.dni){
+              this.registerError = "dniError"
+            }
+            setTimeout(() => {
+              this.registerError = ''
+            }, 3000)
+            if(user.mail !== userData.mail && user.dni !== userData.dni){
+              localStorage.removeItem('user')
+              user.state = 'connected'
+              localStorage.setItem('user', JSON.stringify(user))
+              this.route.navigate(['/home'])
+              this.user.refresh.emit(1)
+            }
+      } else{
+          user.state = "connected"
+          localStorage.setItem('user', JSON.stringify(user))
+          this.route.navigate(['/home'])
+          this.user.refresh.emit(1)
+        }
+    }
   }
 
-  login(data: Login){
-    this.user.userLogin(data)
-    this.user.loginError.subscribe((error) => {
-      if(error){
-        this.authError = true;
+  login(user: Login){
+    if(localStorage.getItem('user')){
+      let userStorage = (localStorage.getItem("user"))
+      let userData = userStorage && JSON.parse(userStorage)
+      if(user.name !== userData.name){
+        this.loginError = 'nameError'
       }
-    })
-    setTimeout(() => {
-      this.authError = false;
-    }, 3000);
+      setTimeout(() => {
+        this.loginError = ''
+      }, 3000)
+      if(user.mail !== userData.mail){
+        this.loginError = 'mailError'
+      }
+      setTimeout(() => {
+        this.loginError = ''
+      }, 3000)
+      if(user.name === userData.name && user.mail === userData.mail){
+        userData.state = "connected"
+        localStorage.setItem('user', JSON.stringify(userData))
+        this.route.navigate(['/home'])
+        this.user.refresh.emit(2)
+      }
+    }
   }
 
   openLogin(id: number){

@@ -4,14 +4,19 @@
         <input type="text" placeholder="Search...">
         <button class="btn-nav">Search</button>
     </div>
-    <div>
-
-    </div>
-    <div>
+    <div *ngIf="menuType === 0">
         <ul>
-            <li><a (click)="authVerify()">Mi cuenta</a></li>
             <li><a routerLink="/home">Inicio</a></li>
             <li><a>Cart(0)</a></li>
+            <li><a (click)="registerPage()">Registrarse</a></li>
+        </ul>
+    </div>
+    <div *ngIf="menuType === 1">
+        <ul>
+            <li><a routerLink="/home">Inicio</a></li>
+            <li><a>Cart(0)</a></li>
+            <li><a>{{userName | titlecase}}</a></li>
+            <li><a (click)="logout()">Cerrar Sesion</a></li>
         </ul>
     </div>
 </nav>
