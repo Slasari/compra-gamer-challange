@@ -1,0 +1,16 @@
+.cards-container{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    grid-template-columns: repeat(4, minmax(254px, 254px));
+    grid-auto-rows: minmax(300px, auto);
+    gap: 20px;
+}
+
+.paginate{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}

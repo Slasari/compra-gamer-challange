@@ -1,1 +1,43 @@
-<h1>HOME PAGE</h1>
+<ngb-carousel *ngIf="images">
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[0]" alt="Random first slide" class="slider" />
+    </div>
+    <div class="carousel-caption">
+      <h3>CHALLANGE</h3>
+      <p>Angular Basico - Compra Gamer</p>
+    </div>
+  </ng-template>
+</ngb-carousel>
+
+<link rel="preconnect" href="https://compragamer.net" />
+<div class="product-list-wrapper">
+  <h1>Productos Destacados</h1>
+  <div class="row" *ngIf="popularProducts">
+
+    <div class="col-sm-3" *ngFor="let product of popularProducts">
+      <div class="product-item">
+        <img
+          src="{{
+            'https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_' +
+              product.imagenes[0].nombre +
+              '.jpg'
+          }}"
+          width="150"
+          height="134"
+          priority="1"
+          class="product-image"
+        />
+        <div class="product-details">
+          <h6 class="name-head">{{ product.nombre.slice(0, 24)+( (product.nombre).length > 24 &&  '...' ) | titlecase}}</h6>
+          <div class="product-price">
+            <h6>$ {{ product.precio }}</h6>
+          </div>
+          <div class="product-footer">
+            <button class="btn-blue cart">SUMAR AL CARRITO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
