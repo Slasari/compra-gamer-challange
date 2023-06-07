@@ -5,6 +5,10 @@
     margin-bottom: 10px;
 }
 
+.title {
+    margin-top: 10px;
+}
+
 .title a {
     color: rgb(5, 68, 119);
     text-decoration: none;
@@ -14,6 +18,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 30px;
 }
 
 .nav .nav-search input{

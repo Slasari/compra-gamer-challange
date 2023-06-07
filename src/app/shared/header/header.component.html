@@ -1,20 +1,25 @@
 <nav class="nav">
     <h1 class="title"><a routerLink="">CHALLANGE</a></h1>
+    <div *ngIf="userName" class="nav-search">
+        Bienvenido {{userName}} !
+    </div>
+    <div *ngIf="!userName" class="nav-search">
+        Disfruta de los mejores precios en nuestra web
+    </div>
     <div *ngIf="menuType === 0">
         <ul>
             <li><a routerLink="/home">Inicio</a></li>
-            <li><a routerLink="/product/list">Lista de Productos</a></li>
-            <li><a>Cart(0)</a></li>
+            <li><a routerLink="/product/list">Productos</a></li>
             <li><a (click)="registerPage()">Registrarse</a></li>
+            <li><a><mat-icon matBadge="5" matBadgeColor="primary">shopping_cart</mat-icon></a></li>
         </ul>
     </div>
     <div *ngIf="menuType === 1">
         <ul>
             <li><a routerLink="/home">Inicio</a></li>
-            <li><a routerLink="/product/list">Lista de Productos</a></li>
-            <li><a>Cart(0)</a></li>
-            <li><a>{{userName | titlecase}}</a></li>
+            <li><a routerLink="/product/list">Productos</a></li>
             <li><a (click)="logout()">Cerrar Sesion</a></li>
+            <li><a><mat-icon matBadge="5" matBadgeColor="primary">shopping_cart</mat-icon></a></li>
         </ul>
     </div>
 </nav>

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { URLc, URLp } from '../../constans/constans';
 import { Product, SubCategory } from '../../models/product.model';
+import { Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,11 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
 
-  getProducts(){
+  getProducts(): Observable<Product[]>{
     return this.http.get<Product[]>(this.URLp)
   }
 
-  getCategories(){
+  getCategories(): Observable<SubCategory[]>{
     return this.http.get<SubCategory[]>(this.URLc)
   }
 
@@ -29,21 +30,11 @@ export class ProductService {
     for(let i = 0; i < p.length ; i++){
       for(let j = 0; j < c.length; j++){
         if(p[i].id_subcategoria === c[j].id){
-          p[i].id_subcategoria = c[j].nombre
+          p[i].subCategoria = c[j].nombre
         }
       }
     }
     return p
-  }
-
-  currencyFormatter(currency: string, value: any){
-    const formatter = new Intl.NumberFormat('es-ES', {
-      style: 'currency',
-      minimumFractionDigits: 2,
-      currency
-    })
-    let result = formatter.format(value)
-    return result
   }
 
 }

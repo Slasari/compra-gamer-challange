@@ -12,26 +12,24 @@ export class ProductListComponent {
   public productList: Product[] = [];
   public subCategoryList: SubCategory[] = [];
 
+
   public page!: number;
+
+  parameter = 'default';
+
+  parameter2 = 'default';
 
   
   constructor(private product: ProductService) {}
   
   ngOnInit(): void {
     this.getProducts();
-  
   }
-  public reset(){window.scroll({top:0, behavior:'smooth'})}
+  public reset(){window.scroll({top:65, behavior:'smooth'})}
   
   getProducts() {
     this.product.getProducts().subscribe((products) => {
       if (products) {
-        for (let i = 0; i < products.length; i++) {
-          products[i].precio = this.product.currencyFormatter(
-            'ARS',
-            products[i].precio
-          );
-        }
         this.productList = products;
       }
       this.product.getCategories().subscribe((categories) => {
@@ -44,5 +42,7 @@ export class ProductListComponent {
       })
     });
   }
-
+  setProducts(){
+    this.getProducts();
+  }
 }

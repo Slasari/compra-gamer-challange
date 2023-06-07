@@ -30,12 +30,6 @@ export class HomeComponent {
   getProducts() {
     this.product.getProducts().subscribe((products) => {
       if (products) {
-        for (let i = 0; i < products.length; i++) {
-          products[i].precio = this.product.currencyFormatter(
-            'ARS',
-            products[i].precio
-          );
-        }
         this.productList = products;
       }
       this.product.getCategories().subscribe((categories) => {
