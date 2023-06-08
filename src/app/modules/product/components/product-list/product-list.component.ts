@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { filter } from 'rxjs';
 import { Product, SubCategory } from 'src/app/core/models/product.model';
 import { ProductService } from 'src/app/core/services/product/product.service';
 
@@ -9,15 +10,14 @@ import { ProductService } from 'src/app/core/services/product/product.service';
 })
 export class ProductListComponent {
 
+
   public productList: Product[] = [];
   public subCategoryList: SubCategory[] = [];
-
-
+  public productFiltered: Product[] = [];
+  public marked: string[] = [];
   public page!: number;
-
-  parameter = 'default';
-
-  parameter2 = 'default';
+  public parameter1 = 'default';
+  public parameter2 = 'default';
 
   
   constructor(private product: ProductService) {}
@@ -43,11 +43,52 @@ export class ProductListComponent {
           let cartStore = (localStorage.getItem('localCart'))
           let cartData = cartStore && JSON.parse(cartStore)
           this.productList = this.product.getLocalCartData(this.productList, cartData)
+          this.productFiltered = this.productList
         }
       })
     });
   }
   setProducts(){
     this.getProducts();
+  }
+
+  filterByCategories(checkbox : any){
+    let category = checkbox.value;
+    let state = checkbox._checked
+    let newProducts = []
+    if(this.marked.length < 1){
+      this.productFiltered = this.productList
+    }
+    if(state){
+      this.marked.push(category)
+      this.productFiltered = this.productList
+      for(let i = 0; i < this.productFiltered.length; i++){
+        for(let j = 0; j < this.marked.length; j++){
+          if(this.productFiltered[i].subCategoria === this.marked[j]){
+            newProducts.push(this.productFiltered[i])
+          }
+        }
+      }
+      this.productFiltered = newProducts
+      console.log(this.page)
+    }
+    if(!state){
+      this.marked = this.marked.filter(c => c !== category)
+      this.productFiltered = this.productList
+      for(let i = 0; i < this.productFiltered.length; i++){
+        for(let j = 0; j < this.marked.length; j++){
+          if(this.productFiltered[i].subCategoria === this.marked[j]){
+            newProducts.push(this.productFiltered[i])
+          }
+        }
+      }
+      this.productFiltered = newProducts
+      console.log(this.page)
+    }
+    if(!state && this.marked.length < 1){
+      this.marked = this.marked.filter(c => c !== category)
+      this.productFiltered = this.productList
+      console.log(this.page)
+    }
   }
 }

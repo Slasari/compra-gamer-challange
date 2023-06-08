@@ -13,6 +13,7 @@ export class ProductCardComponent {
     id_producto: 0,
     nombre: '',
     precio: 0,
+    iva: 0,
     id_subcategoria: 0,
     subCategoria: '',
     imagenes: [{

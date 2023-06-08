@@ -4,7 +4,8 @@ export interface User {
     mail: string,
     dni: string,
     phone: string,
-    state: string
+    state: string,
+    admin: boolean
 }
 
 export interface Login {

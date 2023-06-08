@@ -2,12 +2,13 @@ export interface Product {
     id_producto: number
     nombre: string,
     precio: number,
+    iva: number
     id_subcategoria: number | string;
     subCategoria: string | undefined;
     imagenes: [{
         nombre: string
     }]
-    inCart: boolean
+    inCart: boolean,
 }
 
 export interface SubCategory {

@@ -64,8 +64,13 @@ export class HeaderComponent {
   }
 
   logout(){
-    this.user.userLogout();
+    let userStorage = localStorage.getItem('user');
+    let userData = userStorage && JSON.parse(userStorage)
+    userData.admin = false
+    localStorage.setItem('user', JSON.stringify(userData))
     this.userName = undefined;
+    this.user.userLogout();
     this.authVerify();
+    this.route.navigate(['/home'])
   }
 }

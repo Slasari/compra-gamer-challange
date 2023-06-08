@@ -27,6 +27,9 @@ export class UserAuthComponent {
 
   signUp(user: User){
     if(user){
+      if(user.admin !== true){
+        user.admin = false;
+      }
       if(localStorage.getItem('user')){
           let userStorage = (localStorage.getItem("user"))
           let userData = userStorage && JSON.parse(userStorage)
@@ -74,6 +77,13 @@ export class UserAuthComponent {
       setTimeout(() => {
         this.loginError = ''
       }, 3000)
+      if(user.name === userData.name && user.mail === userData.mail && userData.admin){
+        userData.state = "connected"
+        localStorage.setItem('user', JSON.stringify(userData))
+        this.route.navigate(['/home'])
+        this.user.refresh.emit(2)
+        this.user.isAdminLogged.next(true)
+      }
       if(user.name === userData.name && user.mail === userData.mail){
         userData.state = "connected"
         localStorage.setItem('user', JSON.stringify(userData))

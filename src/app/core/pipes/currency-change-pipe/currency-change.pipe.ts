@@ -1,6 +1,6 @@
 import {Pipe, PipeTransform, OnDestroy} from '@angular/core'
 import {Subscription} from 'rxjs'
-import {CurrencyService} from '../services/currency/currency.service'
+import {CurrencyService} from '../../services/currency/currency.service'
 
 @Pipe({
     name: 'currencyChange',

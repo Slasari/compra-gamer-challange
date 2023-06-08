@@ -1,43 +1,47 @@
 <div class="user-auth">
     <div class="auth-container" *ngIf="!showLogin">
-        <h1>Registrate!</h1>
+        <h1>Regístrate!</h1>
         <p *ngIf="registerError === 'emailError'" class="auth-error">Ese email ya se encuentra en uso</p>
         <p *ngIf="registerError === 'dniError'" class="auth-error">Ese DNI ya se encuentra en uso</p>
         <form #userSignUp="ngForm" class="common-form" (ngSubmit)="signUp(userSignUp.value)">
-            <input type="text" class="form-input" placeholder="Ingresa tu nombre"
+            <input type="text" class="form-input" placeholder="Ingresá tu nombre"
             name="name"
             required
             ngModel>
-            <input type="text" class="form-input" placeholder="Ingresa tu/s apellido/s"
+            <input type="text" class="form-input" placeholder="Ingresá tu/s apellido/s"
             name="lastname"
             ngModel>
-            <input type="email" class="form-input" placeholder="Ingresa tu email"
+            <input type="email" class="form-input" placeholder="Ingresá tu email"
             name="mail"
             ngModel>
-            <input type="text" class="form-input" placeholder="Ingresa tu DNI"
+            <input type="text" class="form-input" placeholder="Ingresá tu DNI"
             name="dni"
             ngModel>
-            <input type="text" class="form-input" placeholder="Ingresa tu telefono"
+            <input type="text" class="form-input" placeholder="Ingresá tu telefono"
             name="phone"
             ngModel>
-            <button class="btn-form H">Crear Cuenta</button>
-            <p><a (click)="openLogin(1)">Ya tenes una cuenta? Click aca</a></p>
+            <span>ADMIN MODE</span>
+            <input type="checkbox" class="form-input"
+            name="admin"
+            ngModel>
+            <button class="btn-form H">Crear cuenta</button>
+            <p><a (click)="openLogin(1)">Ya tenés una cuenta? Click acá</a></p>
         </form>
     </div>
 
     <div class="auth-container" *ngIf="showLogin">
-        <h1>Bienvenido de Vuelta!</h1>
+        <h1>Bienvenido de vuelta!</h1>
         <p *ngIf="loginError === 'nameError'" class="auth-error">Verifica que tu nombre sea el correcto</p>
         <p *ngIf="loginError === 'mailError'" class="auth-error">Verifica que tu mail sea el correcto</p>
         <form #userLogin="ngForm" class="common-form" (ngSubmit)="login(userLogin.value)">
-            <input type="text" class="form-input" placeholder="Ingresa tu nombre"
+            <input type="text" class="form-input" placeholder="Ingresá tu nombre"
             name="name"
             ngModel>
-            <input type="email" class="form-input" placeholder="Ingresa tu email"
+            <input type="email" class="form-input" placeholder="Ingresá tu email"
             name="mail"
             ngModel>
-            <button class="btn-form H">Iniciar Sesion</button>
-            <p><a (click)="openLogin(0)">Todavia no tenes una cuenta? Click aca</a></p>
+            <button class="btn-form H">Iniciar sesion</button>
+            <p><a (click)="openLogin(0)">Todavía no tenés una cuenta? Click acá</a></p>
         </form>
     </div>
 </div>  

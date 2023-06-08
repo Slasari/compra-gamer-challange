@@ -1,0 +1,86 @@
+<div class="cart-page">
+  <div class="title-cart">
+    <h1>CARRITO</h1>
+  </div>
+  <div>
+    <div class="row">
+      <div class="col-sm-8 details">
+        <div *ngIf="cartProducts.length > 0">
+          <ul *ngFor="let cart of cartProducts">
+            <li>
+              <img
+                src="{{
+                  'https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_' +
+                    cart.imagenes[0].nombre +
+                    '-med.jpg'
+                }}"
+                alt=""
+              />
+            </li>
+            <li>
+              <span class="name">{{
+                cart.nombre.slice(0, 55) + (cart.nombre.length > 55 && "...")
+                  | titlecase
+              }}</span>
+            </li>
+            <li>
+              <span class="price">$ {{ cart.precio | currencyChange }}</span>
+            </li>
+            <li>
+              <button
+                class="btn-blue cart-remove"
+                (click)="removeFromCart(cart)"
+              >
+                X
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="cartProducts.length < 1" class="alternative">
+          <h1>Todavia no has añadido nada a tu carrito!</h1>
+          <button class="btn-blue" routerLink="/product/list">Productos</button>
+        </div>
+      </div>
+      <div class="col-sm-4 summary">
+        <div class="title-summary">
+          <h1>RESUMEN</h1>
+        </div>
+        <div class="summary-container">
+        <ul>
+          <li>
+            <span class="name">Monto</span
+            ><span class="price">{{
+              priceSummary.price | currencyChange
+            }}</span>
+          </li>
+          <li>
+            <span class="name">Iva</span
+            ><span class="price"
+              >+ {{ priceSummary.iva | currencyChange }}</span
+            >
+          </li>
+          <li>
+            <span class="name">Envio</span
+            ><span class="price"
+              >+ {{ priceSummary.delivery | currencyChange }}</span
+            >
+          </li>
+          <li>
+            <span class="name">Descuentos</span
+            ><span class="price">{{ -0 | currencyChange }}</span>
+          </li>
+          <li>
+            <span> <h4 class="name">TOTAL</h4> </span
+            ><span
+              ><h4 class="final-price">
+                {{ priceSummary.total | currencyChange }}
+              </h4></span
+            >
+          </li>
+        </ul>
+        <button class="btn-blue cart">Comprar</button>
+     </div>
+      </div>
+    </div>
+  </div>
+</div>

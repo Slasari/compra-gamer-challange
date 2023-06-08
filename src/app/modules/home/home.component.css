@@ -61,6 +61,11 @@
     border-top: 1px solid #6a6969;
 }
 
+.populars{
+    font-weight: bold;
+    font-size: 35px;
+}
+
 .cart {
     font-size: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
