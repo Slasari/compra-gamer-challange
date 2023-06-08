@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductComponent } from './product.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { ProductListAdminComponent } from './components/product-list-admin/product-list-admin.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'list/admin',
-    component: ProductListComponent,
+    component: ProductListAdminComponent,
     canActivate: [AuthGuard]
   }
 ];

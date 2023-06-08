@@ -13,6 +13,7 @@ import { ProductHeaderComponent } from './components/product-header/product-head
 import { CurrencyChangePipe } from 'src/app/core/pipes/currency-change-pipe/currency-change.pipe';
 import { PipesModule } from 'src/app/pipes.module';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { ProductListAdminComponent } from './components/product-list-admin/product-list-admin.component';
 
 
 
@@ -21,7 +22,8 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
     ProductComponent,
     ProductListComponent,
     ProductCardComponent,
-    ProductHeaderComponent
+    ProductHeaderComponent,
+    ProductListAdminComponent
   ],
   imports: [
     CommonModule,

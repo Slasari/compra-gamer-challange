@@ -9,6 +9,9 @@ export interface Product {
         nombre: string
     }]
     inCart: boolean,
+    garantia: number,
+    stock: number,
+    vendible: number
 }
 
 export interface SubCategory {

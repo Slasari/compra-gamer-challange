@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Login, User } from 'src/app/core/models/user.model';
 import { UserService } from 'src/app/core/services/user/user.service';
+import {FormGroup, FormControl} from '@angular/forms'
 
 
 @Component({
@@ -19,16 +20,29 @@ export class UserAuthComponent {
   registerError : string = '';
   loginError : string = '';
 
+  form = new FormGroup({
+    name: new FormControl(),
+    lastname: new FormControl(),
+    mail: new FormControl(),
+    dni: new FormControl(),
+    phone: new FormControl(),
+    admin: new FormControl()
+  })
+
   constructor(private user: UserService, private route: Router){}
 
   ngOnInit(){
 
   }
 
+  onSubmit(data: any){
+    console.log(data)
+  }
+
   signUp(user: User){
     if(user){
-      if(user.admin !== true){
-        user.admin = false;
+      if(user.admin === ""){
+        user.admin = 0;
       }
       if(localStorage.getItem('user')){
           let userStorage = (localStorage.getItem("user"))
@@ -77,14 +91,15 @@ export class UserAuthComponent {
       setTimeout(() => {
         this.loginError = ''
       }, 3000)
-      if(user.name === userData.name && user.mail === userData.mail && userData.admin){
+      if(user.name === userData.name && user.mail === userData.mail && userData.admin === 0){
         userData.state = "connected"
         localStorage.setItem('user', JSON.stringify(userData))
         this.route.navigate(['/home'])
         this.user.refresh.emit(2)
         this.user.isAdminLogged.next(true)
       }
-      if(user.name === userData.name && user.mail === userData.mail){
+      if(user.name === userData.name && user.mail === userData.mail && userData.admin === false){
+        userData.admin = true;
         userData.state = "connected"
         localStorage.setItem('user', JSON.stringify(userData))
         this.route.navigate(['/home'])

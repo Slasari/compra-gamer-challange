@@ -6,10 +6,6 @@ import { CartPageComponent } from './components/cart-page/cart-page.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: UserComponent
-  },
-  {
     path: 'auth',
     component: UserAuthComponent
   },

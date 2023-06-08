@@ -18,6 +18,8 @@ export class HeaderComponent {
 
   cartItems: number = 0;
 
+  auth = undefined
+
 
   constructor(private route: Router, private user: UserService, private productService: ProductService){}
 
@@ -44,6 +46,7 @@ export class HeaderComponent {
     if(localStorage.getItem('user')){
     let userStorage = localStorage.getItem('user');
     let userData = userStorage && JSON.parse(userStorage)
+    this.auth = userData.admin
     if(userData.state === "connected"){
       this.userName = userData.name
       this.menuType = 1
@@ -66,7 +69,9 @@ export class HeaderComponent {
   logout(){
     let userStorage = localStorage.getItem('user');
     let userData = userStorage && JSON.parse(userStorage)
-    userData.admin = false
+    if(userData.admin !== 0){
+      userData.admin = false
+    }
     localStorage.setItem('user', JSON.stringify(userData))
     this.userName = undefined;
     this.user.userLogout();

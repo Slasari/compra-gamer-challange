@@ -19,7 +19,10 @@ export class ProductCardComponent {
     imagenes: [{
       nombre: ''
     }],
-    inCart: false
+    inCart: false,
+    garantia: 0,
+    stock: 0,
+    vendible: 0
   }
 
   constructor(private productService: ProductService){}

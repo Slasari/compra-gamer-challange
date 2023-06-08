@@ -5,7 +5,7 @@ export interface User {
     dni: string,
     phone: string,
     state: string,
-    admin: boolean
+    admin: boolean | number | string
 }
 
 export interface Login {
