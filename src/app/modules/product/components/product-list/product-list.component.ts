@@ -70,7 +70,6 @@ export class ProductListComponent {
         }
       }
       this.productFiltered = newProducts
-      console.log(this.page)
     }
     if(!state){
       this.marked = this.marked.filter(c => c !== category)
@@ -83,12 +82,10 @@ export class ProductListComponent {
         }
       }
       this.productFiltered = newProducts
-      console.log(this.page)
     }
     if(!state && this.marked.length < 1){
       this.marked = this.marked.filter(c => c !== category)
       this.productFiltered = this.productList
-      console.log(this.page)
     }
   }
 }
