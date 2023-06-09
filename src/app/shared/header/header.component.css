@@ -63,3 +63,7 @@
     cursor: pointer;
     font-weight: bold;
 }
+
+.nav ul li a:hover{
+    color: rgb(14, 130, 225);
+}

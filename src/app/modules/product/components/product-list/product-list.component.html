@@ -1,21 +1,21 @@
 <main class="container">
     <app-product-header></app-product-header>
     <div class="filters-container">
-       <section>
-        <section class="example-section">
-            <h4>Categorias</h4>
-            <p class="categories-list"><mat-checkbox  *ngFor="let c of subCategoryList"
-                value="{{c.nombre}}" #submit (click)="filterByCategories(submit); page=1">{{c.nombre}}</mat-checkbox></p>
-          </section>
+        <section>
+            <section class="example-section">
+                <h4>Categorias</h4>
+                <p class="categories-list"><mat-checkbox  *ngFor="let c of subCategoryList"
+                    value="{{c.nombre}}" #submit (click)="filterByCategories(submit); page=1">{{c.nombre}}</mat-checkbox></p>
+                </section>
        </section>
        <section class="sort-container">
-        <h4>Ordenar</h4>
-            <mat-form-field>
-                <mat-label>Nombre</mat-label>
-                <mat-select [(ngModel)]="parameter1">
-                    <mat-option (click)="setProducts()">Normal</mat-option>
-                    <mat-option value="asc">A-Z</mat-option>
-                    <mat-option value="desc">Z-A</mat-option>
+           <h4>Ordenar</h4>
+           <mat-form-field>
+               <mat-label>Nombre</mat-label>
+               <mat-select [(ngModel)]="parameter1">
+                   <mat-option (click)="setProducts()">Normal</mat-option>
+                   <mat-option value="asc">A-Z</mat-option>
+                   <mat-option value="desc">Z-A</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
