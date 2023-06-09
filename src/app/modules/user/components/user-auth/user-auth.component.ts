@@ -48,7 +48,7 @@ export class UserAuthComponent {
         '',
         [
           Validators.required,
-          Validators.minLength(5),
+          Validators.minLength(4),
           Validators.maxLength(16),
           Validators.pattern('[a-zA-Z ]*'),
         ],

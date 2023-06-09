@@ -61,8 +61,8 @@ export class HeaderComponent {
     }
   }
 
-  registerPage() {
-    this.route.navigate(['/user/auth']);
+  loginPage() {
+    this.route.navigate(['/user/login']);
   }
 
   logout() {
