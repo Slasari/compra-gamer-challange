@@ -29,7 +29,6 @@ export class ProductListAdminComponent {
         }
         if(this.productList && this.subCategoryList){
           this.productList = this.productService.getProductsWithCategory(this.productList, this.subCategoryList)
-          console.log(this.productList)
         }
       })
     });

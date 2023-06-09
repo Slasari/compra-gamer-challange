@@ -28,10 +28,14 @@
             </mat-form-field>
    </section>
     </div>
-    <div>
+    <div *ngIf="productFiltered.length > 0">
         <div *ngIf="productList" class="cards-container">
             <app-product-card *ngFor="let product of ((productFiltered | orderBy: parameter1) | sortPrice: parameter2) | paginate: {itemsPerPage: 12, currentPage: page}" [product]="product"></app-product-card>
         </div>
         <pagination-controls (pageChange)="page = $event; reset()" previousLabel="Anterior" nextLabel="Siguiente" class="paginate"></pagination-controls>
+    </div>
+    <div class="template" *ngIf="productFiltered.length < 1">
+        <p>Por el momento los productos que estas buscando no estan disponibles</p>
+        <p>Proba con otra categoria!</p>
     </div>
 </main>

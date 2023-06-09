@@ -39,12 +39,10 @@ export class CartPageComponent {
   }
   getSummary(){
     let products = this.cartProducts
-    console.log(products)
     let price: number = 0;
     let iva: number = 0;
 
     products.forEach((e) => {
-      console.log(e)
       price = price + e.precio;
       iva = + e.iva;
     })

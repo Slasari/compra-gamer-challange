@@ -35,7 +35,6 @@ export class HeaderComponent {
     let cartData = localStorage.getItem('localCart');
     if(cartData){
       this.cartItems= JSON.parse(cartData).length
-      console.log(cartData)
     }
     this.productService.cartData.subscribe((items) => {
       this.cartItems = items.length
