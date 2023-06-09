@@ -20,7 +20,8 @@ ul{
 }
 
 .footer ul li a {
-    color: white;
+    color: #ddd;
     text-decoration: none;
     cursor: pointer;
+    font-weight: bold;
 }

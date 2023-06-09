@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Login, User } from 'src/app/core/models/user.model';
 import { UserService } from 'src/app/core/services/user/user.service';
-import {FormGroup, FormControl} from '@angular/forms'
+import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms'
+import {faCircleXmark, faTriangleExclamation, faUserCheck, faCircleCheck, faArrowLeft} from '@fortawesome/free-solid-svg-icons'
 
 
 @Component({
@@ -12,108 +13,135 @@ import {FormGroup, FormControl} from '@angular/forms'
 })
 export class UserAuthComponent {
 
+  user: User = {
+    username: '',
+    name: '',
+    lastname: '',
+    mail: '',
+    dni: '',
+    phone: '',
+    state: '',
+    admin: ''
+  }
+
+  form = new FormGroup({
+    username: new FormControl(),
+    name: new FormControl(),
+    lastname: new FormControl(),
+    mail: new FormControl(),
+    dni: new FormControl(),
+    phone: new FormControl(),
+    admin: new FormControl(),
+    state: new FormControl(),
+  })
+
+  errorIcon = faCircleXmark
+  checkIcon = faCircleCheck
+  warningIcon = faTriangleExclamation
+  sucessIcon = faUserCheck
+  arrow = faArrowLeft
 
   showLogin: boolean = false;
+  submitSuccess: boolean = false;
+  submitError : boolean = false;
 
   refresh: number = 0;
 
   registerError : string = '';
   loginError : string = '';
 
-  form = new FormGroup({
-    name: new FormControl(),
-    lastname: new FormControl(),
-    mail: new FormControl(),
-    dni: new FormControl(),
-    phone: new FormControl(),
-    admin: new FormControl()
-  })
 
-  constructor(private user: UserService, private route: Router){}
+  constructor(private userService: UserService, private route: Router, private fb : FormBuilder){}
 
   ngOnInit(){
-
+    this.form = this.initForm();
   }
 
-  onSubmit(data: any){
-    console.log(data)
-  }
-
-  signUp(user: User){
-    if(user){
-      if(user.admin === ""){
-        user.admin = 0;
+  onSubmit(order: string){
+    if(order === 'error'){
+      this.submitError = true;
+      setTimeout(() => {
+        this.submitError = false;
+      }, 5000);
+    }
+    if(order === 'submit'){
+      this.user = {
+        username: this.form.value.username,
+        name: this.form.value.name,
+        lastname: this.form.value.lastname,
+        mail: this.form.value.mail,
+        dni: this.form.value.dni,
+        phone: this.form.value.phone,
+        state: this.form.value.state,
+        admin: this.form.value.admin
       }
-      if(localStorage.getItem('user')){
-          let userStorage = (localStorage.getItem("user"))
-          let userData = userStorage && JSON.parse(userStorage)
-          if(user.mail === userData.mail){
-            this.registerError = "emailError";
-            }
+      setTimeout(() => {
+        this.submitSuccess = false;
+      }, 5000)
+
+      if(this.user){
+        if(this.user.admin === ''){
+          this.user.admin = 0;
+      }
+        if(localStorage.getItem('user')){
+            let userStorage = (localStorage.getItem("user"))
+            let userData = userStorage && JSON.parse(userStorage)
+            if(this.user.mail === userData.mail){
+              this.registerError = "mailError";
+              }
+              setTimeout(() => {
+                this.registerError = ''
+              }, 5000)
+              if (this.user.dni === userData.dni){
+                this.registerError = "dniError"
+              }
+              setTimeout(() => {
+                this.registerError = ''
+              }, 5000)
+              if (this.user.username === userData.username){
+                this.registerError = "usernameError"
+              }
+              setTimeout(() => {
+                this.registerError = ''
+              }, 5000)
+              if(this.user.mail !== userData.mail && this.user.dni !== userData.dni && this.user.username !== userData.username){
+                localStorage.removeItem('user')
+                this.user.state = 'connected'
+                localStorage.setItem('user', JSON.stringify(this.user))
+                this.userService.refresh.emit(1)
+                this.submitSuccess = true
+                setTimeout(() => {
+                  this.route.navigate(['/home'])
+                  this.submitSuccess = false
+                }, 2000)
+              }
+        } else{
+            this.user.state = "connected"
+            localStorage.setItem('user', JSON.stringify(this.user))
+            this.userService.refresh.emit(1)
+            this.submitSuccess = true
             setTimeout(() => {
-              this.registerError = ''
-            }, 3000)
-            if (user.dni === userData.dni){
-              this.registerError = "dniError"
-            }
-            setTimeout(() => {
-              this.registerError = ''
-            }, 3000)
-            if(user.mail !== userData.mail && user.dni !== userData.dni){
-              localStorage.removeItem('user')
-              user.state = 'connected'
-              localStorage.setItem('user', JSON.stringify(user))
               this.route.navigate(['/home'])
-              this.user.refresh.emit(1)
-            }
-      } else{
-          user.state = "connected"
-          localStorage.setItem('user', JSON.stringify(user))
-          this.route.navigate(['/home'])
-          this.user.refresh.emit(1)
-        }
+              this.submitSuccess = false
+            }, 2000)
+          }
+      }
+      
     }
+    
+
   }
 
-  login(user: Login){
-    if(localStorage.getItem('user')){
-      let userStorage = (localStorage.getItem("user"))
-      let userData = userStorage && JSON.parse(userStorage)
-      if(user.name !== userData.name){
-        this.loginError = 'nameError'
-      }
-      setTimeout(() => {
-        this.loginError = ''
-      }, 3000)
-      if(user.mail !== userData.mail){
-        this.loginError = 'mailError'
-      }
-      setTimeout(() => {
-        this.loginError = ''
-      }, 3000)
-      if(user.name === userData.name && user.mail === userData.mail && userData.admin === 0){
-        userData.state = "connected"
-        localStorage.setItem('user', JSON.stringify(userData))
-        this.route.navigate(['/home'])
-        this.user.refresh.emit(2)
-        this.user.isAdminLogged.next(true)
-      }
-      if(user.name === userData.name && user.mail === userData.mail && userData.admin === false){
-        userData.admin = true;
-        userData.state = "connected"
-        localStorage.setItem('user', JSON.stringify(userData))
-        this.route.navigate(['/home'])
-        this.user.refresh.emit(2)
-      }
-    }
-  }
-
-  openLogin(id: number){
-    if(id === 1){
-      this.showLogin = true;
-    }
-    else {
-      this.showLogin = false;
-    }
+  initForm(): FormGroup{
+    return this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(16), Validators.pattern('[a-zA-Z0-9]*')]],
+      name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(16), Validators.pattern('[a-zA-Z ]*')]],
+      lastname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(16), Validators.pattern('[a-zA-Z ]*')]],
+      mail: ['', [Validators.required, Validators.email, Validators.pattern("[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}")]],
+      dni: ['', [Validators.required, Validators.pattern("^[0-9]{1,3}\[0-9]{3,3}\[0-9]{3,3}$")]],
+      phone: ['', [Validators.required, Validators.pattern("^([+]{1})?\([ |54]{1,3})?\[0-9 ]{11}")]],
+      admin: [''],
+      state:['']
+    })
   }
 }

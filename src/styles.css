@@ -23,19 +23,3 @@ body {
     background-color: #2589e6;
     transition: 0.15s
 }
-
-.common-form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin: auto;
-}
-
-.form-input {
-    height: 35px;
-    margin-bottom: 20px;
-    outline: none;
-    border: none;
-    border-bottom: 2px solid rgb(5, 68, 119);
-    font-size: 15px;
-}

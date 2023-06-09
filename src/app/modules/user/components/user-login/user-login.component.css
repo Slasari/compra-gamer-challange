@@ -165,18 +165,3 @@
     background-color: rgb(7, 114, 201);
     color: #ddd
 }
-
-.checkbox{
-    height: 30px;
-    width: 30px;
-    line-height: 25px;
-    cursor: pointer;
-    margin-right: 15px;
-}
-
-.checkbox-container{
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-   
-}

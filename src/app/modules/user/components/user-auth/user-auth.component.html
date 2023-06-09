@@ -1,80 +1,128 @@
-<div>
+<div class="form-container">
     <h1>Registrate!</h1>
-    <form [formGroup]="form" >
+    <form class="form" [formGroup]="form" (ngSubmit)=" form.invalid || this.registerError !== '' ? onSubmit('error') : onSubmit('submit')">
+
+        <!--Username-Group-->
+        <div class="form__group">
+            <label class="form__label">Nombre de usuario</label>
+            <div class="form__group-input">
+                <input type="text" class="form__input" formControlName="username" name="username" id="username" placeholder="Usuario123"/>
+                <fa-icon *ngIf="form.get('username')?.errors && form.get('username')?.touched"  [icon]="errorIcon" class="form__validation-error"></fa-icon>
+                <fa-icon *ngIf="!form.get('username')?.errors" [icon]="checkIcon" class="form__validation-check"></fa-icon>
+            </div>
+            <p [ngClass]="form.get('username')?.touched && form.get('username')?.errors?.['required'] ? 'form__input-error' : 'form__input-error2' ">Este campo es requerido.</p>
+            <p *ngIf="this.registerError === 'usernameError'" class="form__input-error">Ese nombre de usuario ya esta en uso.</p>
+            <p
+            [ngClass]="form.get('username')?.touched && 
+            (form.get('username')?.errors?.['minlength'] ||
+            form.get('username')?.errors?.['maxlength'] ||
+            form.get('username')?.errors?.['pattern']) ? 'form__input-error' : 'form__input-error2'
+            ">El nombre de usuario debe tener entre 5 y 16 caracteres, Puede poseer letras y numeros.</p>
+        </div>
+
+        <!--Name-Group-->
+        <div class="form__group">
+            <label class="form__label">Nombre</label>
+            <div class="form__group-input">
+                <input type="text" class="form__input" formControlName="name" placeholder="Nombre"/>
+                <fa-icon *ngIf="form.get('name')?.errors && form.get('name')?.touched"  [icon]="errorIcon" class="form__validation-error"></fa-icon>
+                <fa-icon *ngIf="!form.get('name')?.errors" [icon]="checkIcon" class="form__validation-check"></fa-icon>
+            </div>
+            <p [ngClass]="form.get('name')?.touched && form.get('name')?.errors?.['required'] ? 'form__input-error' : 'form__input-error2' ">Este campo es requerido.</p>
+            <p class="form__input-error"
+            [ngClass]="form.get('name')?.touched && 
+            (form.get('name')?.errors?.['minlength'] ||
+            form.get('name')?.errors?.['maxlength'] ||
+            form.get('name')?.errors?.['pattern']) ? 'form__input-error' : 'form__input-error2'
+            ">Por favor introduzca su nombre legal completo.</p>
+        </div>  
+
+         <!--LastName-Group-->
+         <div class="form__group">
+            <label class="form__label">Apellido</label>
+            <div class="form__group-input">
+                <input type="text" class="form__input" formControlName="lastname" placeholder="Apellido o apellidos"/>
+                <fa-icon *ngIf="form.get('lastname')?.errors && form.get('lastname')?.touched"  [icon]="errorIcon" class="form__validation-error"></fa-icon>
+                <fa-icon *ngIf="!form.get('lastname')?.errors" [icon]="checkIcon" class="form__validation-check"></fa-icon>
+            </div>
+            <p [ngClass]="form.get('lastname')?.touched && form.get('lastname')?.errors?.['required'] ? 'form__input-error' : 'form__input-error2' ">Este campo es requerido.</p>
+            <p class="form__input-error"
+            [ngClass]="form.get('lastname')?.touched && 
+            (form.get('lastname')?.errors?.['minlength'] ||
+            form.get('lastname')?.errors?.['maxlength'] ||
+            form.get('lastname')?.errors?.['pattern']) ? 'form__input-error' : 'form__input-error2'
+            ">Por favor introduza sus apellidos legales completos.</p>
+        </div>
+
+         <!--Mail-Group-->
+         <div class="form__group">
+            <label class="form__label">Email</label>
+            <div class="form__group-input">
+                <input type="email" class="form__input" formControlName="mail" placeholder="Ejemplo@hotmail.com"/>
+                <fa-icon *ngIf="form.get('mail')?.errors && form.get('mail')?.touched" [icon]="errorIcon" class="form__validation-error"></fa-icon>
+                <fa-icon *ngIf="!form.get('mail')?.errors" [icon]="checkIcon" class="form__validation-check"></fa-icon>
+            </div>
+            <p [ngClass]="form.get('mail')?.touched && form.get('mail')?.errors?.['required'] ? 'form__input-error' : 'form__input-error2' ">Este campo es requerido.</p>
+            <p *ngIf="this.registerError === 'mailError'" class="form__input-error">Ese email ya se encuentra registrado.</p>
+            <p class="form__input-error"
+            [ngClass]="form.get('mail')?.touched && 
+            (form.get('mail')?.errors?.['email'] ||
+            form.get('mail')?.errors?.['pattern']) ? 'form__input-error' : 'form__input-error2'
+            ">Debe ingresar un email valido.</p>
+        </div>
+
+         <!--DNI-Group-->
+         <div class="form__group">
+            <label class="form__label">DNI</label>
+            <div class="form__group-input">
+                <input type="text" class="form__input" formControlName="dni" placeholder="99.999.999"/>
+                <fa-icon *ngIf="form.get('dni')?.errors && form.get('dni')?.touched"  [icon]="errorIcon" class="form__validation-error"></fa-icon>
+                <fa-icon *ngIf="!form.get('dni')?.errors" [icon]="checkIcon" class="form__validation-check"></fa-icon>
+            </div>
+            <p [ngClass]="form.get('dni')?.touched && form.get('dni')?.errors?.['required'] ? 'form__input-error' : 'form__input-error2' ">Este campo es requerido.</p>
+            <p *ngIf="this.registerError === 'dniError'" class="form__input-error">Ese DNI ya se encuentra registrado.</p>
+            <p class="form__input-error"
+            [ngClass]="form.get('dni')?.touched && 
+            form.get('dni')?.errors?.['pattern'] ? 'form__input-error' : 'form__input-error2'
+            ">Por favor introduza el numero tal cual figura en su DNI sin los puntos.</p>
+        </div>
+
+         <!--Phone-Group-->
+         <div class="form__group">
+            <label class="form__label">Telefono de contacto</label>
+            <div class="form__group-input">
+                <input type="text" class="form__input" formControlName="phone" placeholder="+54 1234 5678"/>
+                <fa-icon *ngIf="form.get('phone')?.errors && form.get('phone')?.touched"  [icon]="errorIcon" class="form__validation-error"></fa-icon>
+                <fa-icon *ngIf="!form.get('phone')?.errors" [icon]="checkIcon" class="form__validation-check"></fa-icon>
+            </div>
+            <p [ngClass]="form.get('phone')?.touched && form.get('phone')?.errors?.['required'] ? 'form__input-error' : 'form__input-error2' ">Este campo es requerido.</p>
+            <p class="form__input-error"
+            *ngIf="form.get('phone')?.touched && 
+            (form.get('phone')?.errors?.['minlength'] ||
+            form.get('phone')?.errors?.['pattern'])
+            ">Por favor introduza el codigo de area seguido de un numero de contacto valido.</p>
+        </div>
+
+        <!--ADMININISTRADOR-->
+        <div class="form__group-admin">
+            <label class="form__label" class="checkbox-container">
+                <input type="checkbox" class="form__checkbox" formControlName="admin" class="checkbox">
+                MODO ADMINISTRADOR (Acceso a una lista de productos con enfoque administrativo)
+            </label>
+        </div>
+
+        <div class="form__message-error" *ngIf="submitError">
+            <p><fa-icon [icon]="warningIcon"></fa-icon><b>Por favor rellena los campos correctamente.</b></p>
+        </div>
+        <div class="form__message-success" *ngIf="submitSuccess">
+            <p><b>Usuario registrado con exito!</b><fa-icon [icon]="sucessIcon"></fa-icon></p>
+        </div>
         
+        <div class="form__group-btn">
+            <button type="submit" >Crear cuenta</button>
+        </div>
+        <div class="form__message-advice">
+            <p routerLink="/user/login"><b>Ya tienes una cuenta? Click aca</b><fa-icon [icon]="arrow"></fa-icon></p>
+        </div>
     </form>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="user-auth">
-    <div class="auth-container" *ngIf="!showLogin">
-        <h1>Regístrate!</h1>
-        <p *ngIf="registerError === 'emailError'" class="auth-error">Ese email ya se encuentra en uso</p>
-        <p *ngIf="registerError === 'dniError'" class="auth-error">Ese DNI ya se encuentra en uso</p>
-        <form #userSignUp="ngForm" class="common-form" (ngSubmit)="signUp(userSignUp.value)">
-            <input type="text" class="form-input" placeholder="Ingresá tu nombre"
-            name="name"
-            required
-            ngModel>
-            <input type="text" class="form-input" placeholder="Ingresá tu apellido"
-            name="lastname"
-            ngModel>
-            <input type="email" class="form-input" placeholder="Ingresá tu email"
-            name="mail"
-            ngModel>
-            <input type="text" class="form-input" placeholder="Ingresá tu DNI"
-            name="dni"
-            ngModel>
-            <input type="text" class="form-input" placeholder="Ingresá tu telefono"
-            name="phone"
-            ngModel>
-            <span>MODO ADMINISTRADOR</span>
-            <input type="checkbox" class="form-input"
-            name="admin"
-            ngModel>
-            <button class="btn-form H">Crear cuenta</button>
-            <p><a (click)="openLogin(1)">Ya tenés una cuenta? Click acá</a></p>
-        </form>
-    </div>
-
-    <div class="auth-container" *ngIf="showLogin">
-        <h1>Bienvenido de vuelta!</h1>
-        <p *ngIf="loginError === 'nameError'" class="auth-error">Verifica que tu nombre sea el correcto</p>
-        <p *ngIf="loginError === 'mailError'" class="auth-error">Verifica que tu mail sea el correcto</p>
-        <form #userLogin="ngForm" class="common-form" (ngSubmit)="login(userLogin.value)">
-            <input type="text" class="form-input" placeholder="Ingresá tu nombre"
-            name="name"
-            ngModel>
-            <input type="email" class="form-input" placeholder="Ingresá tu email"
-            name="mail"
-            ngModel>
-            <button class="btn-form H">Iniciar sesion</button>
-            <p><a (click)="openLogin(0)">Todavía no tenés una cuenta? Click acá</a></p>
-        </form>
-    </div>
-</div>   -->

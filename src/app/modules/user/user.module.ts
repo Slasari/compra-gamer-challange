@@ -9,6 +9,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { PipesModule } from 'src/app/pipes.module';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { UserLoginComponent } from './components/user-login/user-login.component';
 
 
 
@@ -16,7 +17,8 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
   declarations: [
     UserComponent,
     UserAuthComponent,
-    CartPageComponent
+    CartPageComponent,
+    UserLoginComponent
   ],
   imports: [
     CommonModule,
