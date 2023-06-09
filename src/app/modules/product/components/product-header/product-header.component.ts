@@ -4,18 +4,17 @@ import { CurrencyService } from 'src/app/core/services/currency/currency.service
 @Component({
   selector: 'app-product-header',
   templateUrl: './product-header.component.html',
-  styleUrls: ['./product-header.component.css']
+  styleUrls: ['./product-header.component.css'],
 })
 export class ProductHeaderComponent {
-
-  public currencies: Array<any> = []
-
-  constructor(private currencyServices: CurrencyService){}
-
-  ngOnInit(): void{
-  }
+  
+  constructor(private currencyServices: CurrencyService) {}
+  
+  public currencies: Array<any> = [];
+  
+  ngOnInit(): void {}
 
   setCurrency(symbol: string, value: number): void {
-    this.currencyServices.setCurrency(symbol, value)
+    this.currencyServices.setCurrency(symbol, value);
   }
 }

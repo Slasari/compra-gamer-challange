@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ProductListAdminComponent } from './product-list-admin.component';
 
 describe('ProductListAdminComponent', () => {
@@ -8,7 +7,7 @@ describe('ProductListAdminComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductListAdminComponent]
+      declarations: [ProductListAdminComponent],
     });
     fixture = TestBed.createComponent(ProductListAdminComponent);
     component = fixture.componentInstance;

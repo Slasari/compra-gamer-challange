@@ -4,21 +4,9 @@ import { CurrencyChangePipe } from './core/pipes/currency-change-pipe/currency-c
 import { OrderByPipe } from './core/pipes/order-by-pipe/order-by.pipe';
 import { SortPricePipe } from './core/pipes/sort-price-pipe/sort-price.pipe';
 
-
-
 @NgModule({
-  declarations: [
-    CurrencyChangePipe,
-    OrderByPipe,
-    SortPricePipe
-  ],
-  imports: [
-    CommonModule,
-  ],
-  exports: [
-    CurrencyChangePipe,
-    OrderByPipe,
-    SortPricePipe
-  ]
+  declarations: [CurrencyChangePipe, OrderByPipe, SortPricePipe],
+  imports: [CommonModule],
+  exports: [CurrencyChangePipe, OrderByPipe, SortPricePipe],
 })
-export class PipesModule { }
+export class PipesModule {}

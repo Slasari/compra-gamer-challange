@@ -8,20 +8,20 @@ import { UserLoginComponent } from './components/user-login/user-login.component
 const routes: Routes = [
   {
     path: 'auth',
-    component: UserAuthComponent
+    component: UserAuthComponent,
   },
   {
     path: 'cart',
-    component: CartPageComponent
+    component: CartPageComponent,
   },
   {
     path: 'login',
-    component: UserLoginComponent
-  }
+    component: UserLoginComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class UserRoutingModule { }
+export class UserRoutingModule {}

@@ -5,7 +5,7 @@ import { ProductComponent } from './product.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import {NgOptimizedImage} from '@angular/common'
+import { NgOptimizedImage } from '@angular/common';
 import { OrderByPipe } from 'src/app/core/pipes/order-by-pipe/order-by.pipe';
 import { MaterialModule } from 'src/app/material.module';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,15 +15,13 @@ import { PipesModule } from 'src/app/pipes.module';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { ProductListAdminComponent } from './components/product-list-admin/product-list-admin.component';
 
-
-
 @NgModule({
   declarations: [
     ProductComponent,
     ProductListComponent,
     ProductCardComponent,
     ProductHeaderComponent,
-    ProductListAdminComponent
+    ProductListAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -33,8 +31,8 @@ import { ProductListAdminComponent } from './components/product-list-admin/produ
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    PipesModule
+    PipesModule,
   ],
-  providers: [AuthGuard]
+  providers: [AuthGuard],
 })
-export class ProductModule { }
+export class ProductModule {}

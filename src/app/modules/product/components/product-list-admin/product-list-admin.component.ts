@@ -5,33 +5,35 @@ import { ProductService } from 'src/app/core/services/product/product.service';
 @Component({
   selector: 'app-product-list-admin',
   templateUrl: './product-list-admin.component.html',
-  styleUrls: ['./product-list-admin.component.css']
+  styleUrls: ['./product-list-admin.component.css'],
 })
 export class ProductListAdminComponent {
-
-  productList: undefined | Product[];
-  subCategoryList: undefined | SubCategory[];
-
-  constructor(private productService: ProductService){}
-
-  ngOnInit(){
+  
+  constructor(private productService: ProductService) {}
+  
+  ngOnInit() {
     this.getProducts();
   }
 
+  productList: undefined | Product[];
+  subCategoryList: undefined | SubCategory[];
+  
   getProducts() {
     this.productService.getProducts().subscribe((products) => {
       if (products) {
         this.productList = products;
       }
       this.productService.getCategories().subscribe((categories) => {
-        if(categories){
-          this.subCategoryList = categories
+        if (categories) {
+          this.subCategoryList = categories;
         }
-        if(this.productList && this.subCategoryList){
-          this.productList = this.productService.getProductsWithCategory(this.productList, this.subCategoryList)
+        if (this.productList && this.subCategoryList) {
+          this.productList = this.productService.getProductsWithCategory(
+            this.productList,
+            this.subCategoryList
+          );
         }
-      })
+      });
     });
   }
-
 }

@@ -4,28 +4,30 @@ import { NotFoundPageComponent } from './shared/not-found-page/not-found-page.co
 
 const routes: Routes = [
   {
-    path: '', redirectTo: 'home', pathMatch: 'full'
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
   {
     path: 'home',
-    loadChildren: () => import('./modules').then(m => m.HomeModule)
+    loadChildren: () => import('./modules').then((m) => m.HomeModule),
   },
   {
     path: 'product',
-    loadChildren: () => import('./modules').then(m => m.ProductModule)
+    loadChildren: () => import('./modules').then((m) => m.ProductModule),
   },
   {
     path: 'user',
-    loadChildren: () => import('./modules').then(m => m.UserModule)
+    loadChildren: () => import('./modules').then((m) => m.UserModule),
   },
   {
     path: '**',
-    component: NotFoundPageComponent
-  }
+    component: NotFoundPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

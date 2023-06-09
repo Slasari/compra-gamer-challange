@@ -8,21 +8,21 @@ import { ProductListAdminComponent } from './components/product-list-admin/produ
 const routes: Routes = [
   {
     path: '',
-    component: ProductComponent
+    component: ProductComponent,
   },
   {
     path: 'list',
-    component: ProductListComponent
+    component: ProductListComponent,
   },
   {
     path: 'list/admin',
     component: ProductListAdminComponent,
-    canActivate: [AuthGuard]
-  }
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ProductRoutingModule { }
+export class ProductRoutingModule {}

@@ -5,10 +5,14 @@ import { ProductService } from 'src/app/core/services/product/product.service';
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.css']
+  styleUrls: ['./product-card.component.css'],
 })
 export class ProductCardComponent {
 
+  constructor(private productService: ProductService) {}
+
+  ngOnIni() {}
+  
   @Input() product: Product = {
     id_producto: 0,
     nombre: '',
@@ -16,30 +20,27 @@ export class ProductCardComponent {
     iva: 0,
     id_subcategoria: 0,
     subCategoria: '',
-    imagenes: [{
-      nombre: ''
-    }],
+    imagenes: [
+      {
+        nombre: '',
+      },
+    ],
     inCart: false,
     garantia: 0,
     stock: 0,
-    vendible: 0
-  }
+    vendible: 0,
+  };
 
-  constructor(private productService: ProductService){}
 
-  ngOnIni(){
-  }
-
-  addToCart(){
-    if(this.product){
-      this.productService.localAddToCart(this.product)
+  addToCart() {
+    if (this.product) {
+      this.productService.localAddToCart(this.product);
     }
   }
 
-  removeFromCart(producto: Product){
-    if(producto){
-      this.productService.removeFromCart(this.product)
+  removeFromCart(producto: Product) {
+    if (producto) {
+      this.productService.removeFromCart(this.product);
     }
   }
-
 }
